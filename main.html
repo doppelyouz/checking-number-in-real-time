@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="margin: 50px;">
+            <label>
+                <input type="tel" maxlength="16" id="RealTime" value="+7">
+            </label>
+            <h1 id="show_RT"></h1>
+
+            <script>
+            let inputNum = document.getElementById("RealTime");
+
+            document.getElementById('RealTime').addEventListener('input', function(){
+                this.value = "+7" + this.value.slice(2);
+            });
+
+            RealTime.oninput = function() {
+                document.getElementById('show_RT').innerHTML = inputNum.value;
+            };
+
+            let old = 0;
+
+            inputNum.onkeydown = function() {
+                let curLen = inputNum.value.length;
+                
+                if (curLen < old){
+                old--;
+                return;
+                }
+
+                if (curLen == 2){ 
+                    inputNum.value += "(";
+                }
+                if (curLen == 6){
+                    inputNum.value += ")";
+                }
+                if (curLen == 10){
+                    inputNum.value += "-"; 
+                }
+                if (curLen == 13){
+                    inputNum.value += "-";  
+                }
+                old++;
+            }
+        </script>
+
+</body>
+</html>
